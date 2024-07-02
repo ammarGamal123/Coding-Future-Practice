@@ -23,10 +23,8 @@ namespace SchoolProject.Data.Entities
         public string Phone { get; set; }
 
 
-        [ForeignKey("DeptID")]
-        public int? DeptID { get; set; }
-
-
+        [ForeignKey("DepartmentID")]
+        public int? DepartmentID { get; set; }
         public virtual Department Department { get; set; } 
     }
 }
