@@ -11,7 +11,7 @@ namespace SchoolProject.Data.Entities
     public class Student
     {
         [Key]
-        public int StudentID { get; set; }
+        public int StudID { get; set; }
 
         [StringLength(200)]
         public string Name { get; set; }
@@ -23,11 +23,10 @@ namespace SchoolProject.Data.Entities
         public string Phone { get; set; }
 
 
-        [ForeignKey("DepartmentID")]
-        [InverseProperty("Students")]
-        public int DepartmentID { get; set; }
+        [ForeignKey("DeptID")]
+        public int? DeptID { get; set; }
 
 
-        public virtual Department Departments { get; set; } 
+        public virtual Department Department { get; set; } 
     }
 }

@@ -8,19 +8,18 @@ using System.Threading.Tasks;
 
 namespace SchoolProject.Data.Entities
 {
-    public class DepartmentSubject
+    public class StudentSubject
     {
         [Key]
-        public int DeptSubID {get;set;}
+        public int StudSubID { get; set; }
 
-        public int DeptID { get;set;}
+        [ForeignKey("StudID")]
+        public int StudID { get; set; }
+        public virtual Student Student { get; set; }
 
-        public int SubID { get; set; }
-
-        [ForeignKey("DeptID")]
-        public virtual Department Department { get; set; }
-
+        
         [ForeignKey("SubID")]
-        public virtual Subject Subject { get; set; }  
+        public int SubID { get; set; }
+        public virtual Subject Subject { get; set; }
     }
 }
