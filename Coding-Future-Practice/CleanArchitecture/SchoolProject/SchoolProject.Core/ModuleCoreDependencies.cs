@@ -1,7 +1,17 @@
-﻿namespace SchoolProject.Core
-{
-    public class Class1
-    {
+﻿using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
+namespace SchoolProject.Core
+{
+    public static class ModuleCoreDependencies
+    {
+        public static IServiceCollection AddCoreDependencies
+            (this IServiceCollection services)
+        {
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies
+                                (Assembly.GetExecutingAssembly()));
+
+            return services;
+        }
     }
 }
