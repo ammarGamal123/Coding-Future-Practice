@@ -1,6 +1,10 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "npdlKOQ+V8Uj7f1elO2+yRjUtq/pj7PWApJMZkPX/dsTsMh5ZEQuuVEM8hwSwtckzAGc+V6EarNYgSActp284Q==",
+=======
+  "dgSpecHash": "LIliupFbQlcBOXEjqG8sD0a9Aj120s2ngEY7zU7XKNNnduYVWKFP3DtssEaOZOwEpjPbbE/ea8QNrQXbyQcpJg==",
+>>>>>>> 60db001a1f1abf71a9407c6fc95f13f0078d7e73
   "success": true,
   "projectFilePath": "D:\\AWork\\DotNet\\Coding-Fucture\\Coding-Future-Practice\\CleanArchitecture\\SchoolProject\\SchoolProject.Core\\SchoolProject.Core.csproj",
   "expectedPackageFiles": [
