@@ -36,9 +36,12 @@
               "D:\\AWork\\DotNet\\Coding-Fucture\\Coding-Future-Practice\\CleanArchitecture\\SchoolProject\\SchoolProject.Data\\SchoolProject.Data.csproj": {
                 "projectPath": "D:\\AWork\\DotNet\\Coding-Fucture\\Coding-Future-Practice\\CleanArchitecture\\SchoolProject\\SchoolProject.Data\\SchoolProject.Data.csproj"
               },
+<<<<<<< HEAD
+=======
               "D:\\AWork\\DotNet\\Coding-Fucture\\Coding-Future-Practice\\CleanArchitecture\\SchoolProject\\SchoolProject.Infrastructure\\SchoolProject.Infrastructure.csproj": {
                 "projectPath": "D:\\AWork\\DotNet\\Coding-Fucture\\Coding-Future-Practice\\CleanArchitecture\\SchoolProject\\SchoolProject.Infrastructure\\SchoolProject.Infrastructure.csproj"
               },
+>>>>>>> 60db001a1f1abf71a9407c6fc95f13f0078d7e73
               "D:\\AWork\\DotNet\\Coding-Fucture\\Coding-Future-Practice\\CleanArchitecture\\SchoolProject\\SchoolProject.Service\\SchoolProject.Service.csproj": {
                 "projectPath": "D:\\AWork\\DotNet\\Coding-Fucture\\Coding-Future-Practice\\CleanArchitecture\\SchoolProject\\SchoolProject.Service\\SchoolProject.Service.csproj"
               }
@@ -208,15 +211,28 @@
               "target": "Package",
               "version": "[8.0.6, )"
             },
+<<<<<<< HEAD
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[8.0.6, )"
+            },
+=======
+>>>>>>> 60db001a1f1abf71a9407c6fc95f13f0078d7e73
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[8.0.6, )"
             },
+<<<<<<< HEAD
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+=======
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
               "version": "[8.0.6, )"
+>>>>>>> 60db001a1f1abf71a9407c6fc95f13f0078d7e73
             }
           },
           "imports": [
