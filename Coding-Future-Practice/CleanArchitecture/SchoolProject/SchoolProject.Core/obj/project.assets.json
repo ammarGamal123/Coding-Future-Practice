@@ -1048,7 +1048,13 @@
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "8.0.6",
+<<<<<<< HEAD
+          "Microsoft.EntityFrameworkCore.Relational": "8.0.6",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.6",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0",
+=======
+          "Microsoft.EntityFrameworkCore.SqlServer": "8.0.6",
+>>>>>>> 60db001a1f1abf71a9407c6fc95f13f0078d7e73
           "SchoolProject.Data": "1.0.0"
         },
         "compile": {
@@ -2893,7 +2899,6 @@
       "AutoMapper >= 13.0.1",
       "MediatR >= 12.3.0",
       "SchoolProject.Data >= 1.0.0",
-      "SchoolProject.Infrastructure >= 1.0.0",
       "SchoolProject.Service >= 1.0.0"
     ]
   },
@@ -2933,9 +2938,12 @@
             "D:\\AWork\\DotNet\\Coding-Fucture\\Coding-Future-Practice\\CleanArchitecture\\SchoolProject\\SchoolProject.Data\\SchoolProject.Data.csproj": {
               "projectPath": "D:\\AWork\\DotNet\\Coding-Fucture\\Coding-Future-Practice\\CleanArchitecture\\SchoolProject\\SchoolProject.Data\\SchoolProject.Data.csproj"
             },
+<<<<<<< HEAD
+=======
             "D:\\AWork\\DotNet\\Coding-Fucture\\Coding-Future-Practice\\CleanArchitecture\\SchoolProject\\SchoolProject.Infrastructure\\SchoolProject.Infrastructure.csproj": {
               "projectPath": "D:\\AWork\\DotNet\\Coding-Fucture\\Coding-Future-Practice\\CleanArchitecture\\SchoolProject\\SchoolProject.Infrastructure\\SchoolProject.Infrastructure.csproj"
             },
+>>>>>>> 60db001a1f1abf71a9407c6fc95f13f0078d7e73
             "D:\\AWork\\DotNet\\Coding-Fucture\\Coding-Future-Practice\\CleanArchitecture\\SchoolProject\\SchoolProject.Service\\SchoolProject.Service.csproj": {
               "projectPath": "D:\\AWork\\DotNet\\Coding-Fucture\\Coding-Future-Practice\\CleanArchitecture\\SchoolProject\\SchoolProject.Service\\SchoolProject.Service.csproj"
             }

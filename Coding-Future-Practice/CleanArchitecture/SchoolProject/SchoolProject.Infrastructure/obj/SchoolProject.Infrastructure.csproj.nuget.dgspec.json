@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\AWork\\DotNet\\CleanArchitecture\\SchoolProject\\SchoolProject.Infrastructure\\SchoolProject.Infrastructure.csproj": {}
+    "D:\\AWork\\DotNet\\Coding-Fucture\\Coding-Future-Practice\\CleanArchitecture\\SchoolProject\\SchoolProject.Infrastructure\\SchoolProject.Infrastructure.csproj": {}
   },
   "projects": {
-    "D:\\AWork\\DotNet\\CleanArchitecture\\SchoolProject\\SchoolProject.Data\\SchoolProject.Data.csproj": {
+    "D:\\AWork\\DotNet\\Coding-Fucture\\Coding-Future-Practice\\CleanArchitecture\\SchoolProject\\SchoolProject.Data\\SchoolProject.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\AWork\\DotNet\\CleanArchitecture\\SchoolProject\\SchoolProject.Data\\SchoolProject.Data.csproj",
+        "projectUniqueName": "D:\\AWork\\DotNet\\Coding-Fucture\\Coding-Future-Practice\\CleanArchitecture\\SchoolProject\\SchoolProject.Data\\SchoolProject.Data.csproj",
         "projectName": "SchoolProject.Data",
-        "projectPath": "D:\\AWork\\DotNet\\CleanArchitecture\\SchoolProject\\SchoolProject.Data\\SchoolProject.Data.csproj",
+        "projectPath": "D:\\AWork\\DotNet\\Coding-Fucture\\Coding-Future-Practice\\CleanArchitecture\\SchoolProject\\SchoolProject.Data\\SchoolProject.Data.csproj",
         "packagesPath": "C:\\Users\\iamasd\\.nuget\\packages\\",
-        "outputPath": "D:\\AWork\\DotNet\\CleanArchitecture\\SchoolProject\\SchoolProject.Data\\obj\\",
+        "outputPath": "D:\\AWork\\DotNet\\Coding-Fucture\\Coding-Future-Practice\\CleanArchitecture\\SchoolProject\\SchoolProject.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -69,14 +69,14 @@
         }
       }
     },
-    "D:\\AWork\\DotNet\\CleanArchitecture\\SchoolProject\\SchoolProject.Infrastructure\\SchoolProject.Infrastructure.csproj": {
+    "D:\\AWork\\DotNet\\Coding-Fucture\\Coding-Future-Practice\\CleanArchitecture\\SchoolProject\\SchoolProject.Infrastructure\\SchoolProject.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\AWork\\DotNet\\CleanArchitecture\\SchoolProject\\SchoolProject.Infrastructure\\SchoolProject.Infrastructure.csproj",
+        "projectUniqueName": "D:\\AWork\\DotNet\\Coding-Fucture\\Coding-Future-Practice\\CleanArchitecture\\SchoolProject\\SchoolProject.Infrastructure\\SchoolProject.Infrastructure.csproj",
         "projectName": "SchoolProject.Infrastructure",
-        "projectPath": "D:\\AWork\\DotNet\\CleanArchitecture\\SchoolProject\\SchoolProject.Infrastructure\\SchoolProject.Infrastructure.csproj",
+        "projectPath": "D:\\AWork\\DotNet\\Coding-Fucture\\Coding-Future-Practice\\CleanArchitecture\\SchoolProject\\SchoolProject.Infrastructure\\SchoolProject.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\iamasd\\.nuget\\packages\\",
-        "outputPath": "D:\\AWork\\DotNet\\CleanArchitecture\\SchoolProject\\SchoolProject.Infrastructure\\obj\\",
+        "outputPath": "D:\\AWork\\DotNet\\Coding-Fucture\\Coding-Future-Practice\\CleanArchitecture\\SchoolProject\\SchoolProject.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -98,8 +98,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\AWork\\DotNet\\CleanArchitecture\\SchoolProject\\SchoolProject.Data\\SchoolProject.Data.csproj": {
-                "projectPath": "D:\\AWork\\DotNet\\CleanArchitecture\\SchoolProject\\SchoolProject.Data\\SchoolProject.Data.csproj"
+              "D:\\AWork\\DotNet\\Coding-Fucture\\Coding-Future-Practice\\CleanArchitecture\\SchoolProject\\SchoolProject.Data\\SchoolProject.Data.csproj": {
+                "projectPath": "D:\\AWork\\DotNet\\Coding-Fucture\\Coding-Future-Practice\\CleanArchitecture\\SchoolProject\\SchoolProject.Data\\SchoolProject.Data.csproj"
               }
             }
           }
@@ -118,6 +118,24 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[8.0.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.6, )"
+            },
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
