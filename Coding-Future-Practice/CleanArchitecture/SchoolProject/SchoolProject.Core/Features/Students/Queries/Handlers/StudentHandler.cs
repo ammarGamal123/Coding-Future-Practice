@@ -23,6 +23,7 @@ namespace SchoolProject.Core.Features.Students.Queries.Handlers
         public async Task<Response<List<GetStudentsListResponse>>> Handle
             (GetStudentsListQuery request,CancellationToken cancellationToken)
         {
+
             var students = await _studentService.GetAllStudentsAsync();
             var studentsMapper = _mapper.Map<List<GetStudentsListResponse>>(students);
 
