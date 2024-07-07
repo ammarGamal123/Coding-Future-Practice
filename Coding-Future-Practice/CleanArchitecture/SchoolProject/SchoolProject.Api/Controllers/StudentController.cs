@@ -16,10 +16,16 @@ namespace SchoolProject.Api.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet("GetAllStudents")]
+        [HttpGet("Student/List")]
         public async Task<IActionResult> GetAllStudents()
         {
             return Ok(await _mediator.Send(new GetStudentsListQuery()));
+        }
+
+        [HttpGet("Student/{id}")]
+        public async Task<IActionResult> GetStudentByIDAsync([FromRoute]int id)
+        {
+            return Ok(await _mediator.Send(new GetStudentByIDQuery(id)));
         }
     }
 }
