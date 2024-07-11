@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Ignore Spelling: Unprocessable
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -52,6 +54,16 @@ namespace SchoolProject.Core.Bases
                 StatusCode = System.Net.HttpStatusCode.BadRequest,
                 Succeeded = false,
                 Message = Message == null ? "Bad Request" : Message
+            };
+        }
+
+        public Response<T> UnprocessableEntity<T>(string Message = null)
+        {
+            return new Response<T>()
+            {
+                StatusCode = System.Net.HttpStatusCode.UnprocessableEntity,
+                Succeeded = false,
+                Message = Message == null ? "UnProcessable Entity" : Message
             };
         }
 
