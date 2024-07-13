@@ -49,5 +49,11 @@ namespace SchoolProject.Service.Implementations
 
             return student;
         }
+
+        public async Task<bool> IsNameExists(string name)
+        {
+            return await _studentRepository.GetTableNoTracking()
+                .AnyAsync(s => s.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+        }
     }
 }

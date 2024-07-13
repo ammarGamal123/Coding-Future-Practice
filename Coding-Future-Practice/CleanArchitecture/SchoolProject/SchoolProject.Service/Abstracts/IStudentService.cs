@@ -14,5 +14,7 @@ namespace SchoolProject.Service.Abstracts
         public Task<Student> GetStudentByIDAsync(int id);
 
         public Task<string> CreateStudentAsync(Student student);
+
+        public Task<bool> IsNameExists(string name);    
     }
 }
