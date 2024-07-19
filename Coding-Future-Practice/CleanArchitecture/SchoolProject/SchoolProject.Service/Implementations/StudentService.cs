@@ -55,5 +55,18 @@ namespace SchoolProject.Service.Implementations
             return await _studentRepository.GetTableNoTracking()
                 .AnyAsync(s => s.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
+
+        public async Task<bool> IsNameExistsExcludeSelf(string name, int id)
+        {
+            return await _studentRepository.GetTableNoTracking()
+                .AnyAsync(s => s.Name.ToLower() == name.ToLower() && s.StudID != id);
+        }
+
+        public async Task<string> UpdateStudentAsync(Student student)
+        {
+            await _studentRepository.UpdateAsync(student);
+
+            return "Success";
+        }
     }
 }
