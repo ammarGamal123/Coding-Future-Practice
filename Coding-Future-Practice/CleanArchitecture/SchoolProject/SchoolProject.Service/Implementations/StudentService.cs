@@ -35,12 +35,29 @@ namespace SchoolProject.Service.Implementations
             return "Added Successfully";
         }
 
+        public async Task<string> DeleteStudentAsync(Student student)
+        {
+            var trans = _studentRepository.BeginTransaction();
+
+            try
+            {
+                await _studentRepository.DeleteAsync(student);
+                await trans.CommitAsync();
+                return "Success";
+            }
+            catch
+            {
+                await trans.RollbackAsync();
+                return "Failed";
+            }
+       }
+
         public async Task<List<Student>> GetAllStudentsAsync()
         {
             return await  _studentRepository.GetStudentsAsync(); 
         }
 
-        public async Task<Student> GetStudentByIDAsync(int id)
+        public async Task<Student> GetStudentWithIncludingByIDAsync(int id)
         {
             var student = await _studentRepository.GetTableNoTracking()
                                             .Include(s => s.Department)
@@ -48,6 +65,11 @@ namespace SchoolProject.Service.Implementations
                                             .FirstOrDefaultAsync();
 
             return student;
+        }
+
+        public async Task<Student> GetStudentByIDAsync(int id)
+        {
+            return await _studentRepository.GetByIdAsync(id);
         }
 
         public async Task<bool> IsNameExists(string name)
@@ -60,6 +82,12 @@ namespace SchoolProject.Service.Implementations
         {
             return await _studentRepository.GetTableNoTracking()
                 .AnyAsync(s => s.Name.ToLower() == name.ToLower() && s.StudID != id);
+        }
+
+        public async Task<bool> IsStudentIdExist(int id)
+        {
+            return await _studentRepository.GetTableNoTracking().AnyAsync(s => s.StudID == id);
+            
         }
 
         public async Task<string> UpdateStudentAsync(Student student)
