@@ -15,7 +15,8 @@ namespace SchoolProject.Core.Features.Students.Commands.Handlers
     public class StudentCommandHandler :
                  ResponseHandler,
                  IRequestHandler<CreateStudentCommand , Response<string>> , 
-                 IRequestHandler<UpdateStudentCommand , Response<string>>
+                 IRequestHandler<UpdateStudentCommand , Response<string>> , 
+                 IRequestHandler<DeleteStudentCommand , Response<string>>
 
     {
         #region Fields
@@ -84,8 +85,21 @@ namespace SchoolProject.Core.Features.Students.Commands.Handlers
             return Created<string>($"Updated Successfully. ID {mappedStudent.StudID}");
         }
 
+        public async Task<Response<string>> Handle(DeleteStudentCommand request, CancellationToken cancellationToken)
+        {
+            var student = await _studentService.GetStudentByIDAsync(request.StudID);
+
+            if (student == null)
+                return NotFound<string>($"No Student Found With this ID {request.StudID}");
+
+            var result = await _studentService.DeleteStudentAsync(student);
+
+            if (result != $"Success")
+                return BadRequest<string>();
+
+            return Deleted<string>($"Student ID {request.StudID} has been Deleted");
+        }
+
         #endregion
-
-
     }
 }

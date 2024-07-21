@@ -15,13 +15,13 @@ namespace SchoolProject.Core.Bases
             
         }
 
-        public Response<T> Deleted<T>()
+        public Response<T> Deleted<T>(string Message = null)
         {
             return new Response<T>()
             {
                 StatusCode = System.Net.HttpStatusCode.OK,
                 Succeeded = true,
-                Message = "Deleted Successfully"
+                Message = Message ?? "Deleted Successfully"
             };
         }
 
