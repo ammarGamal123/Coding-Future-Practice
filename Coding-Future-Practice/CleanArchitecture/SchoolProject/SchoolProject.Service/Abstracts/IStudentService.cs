@@ -1,4 +1,6 @@
-﻿using SchoolProject.Data.Entities;
+﻿// Ignore Spelling: Queryable
+
+using SchoolProject.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +12,10 @@ namespace SchoolProject.Service.Abstracts
     public interface IStudentService
     {
         public Task<List<Student>> GetAllStudentsAsync();
+
+        public IQueryable<Student> GetStudentsQueryable();
+
+        public IQueryable<Student> FilterStudentPaginatedQuery(string search);
 
         public Task<Student> GetStudentWithIncludingByIDAsync(int id);
 
