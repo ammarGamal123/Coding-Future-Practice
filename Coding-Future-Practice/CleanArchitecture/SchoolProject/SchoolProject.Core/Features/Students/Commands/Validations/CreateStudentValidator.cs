@@ -45,7 +45,6 @@ namespace SchoolProject.Core.Features.Students.Commands.Vadlidatoins
                 .MaximumLength(50).WithMessage("{PropertyName} Max Length is 50");
         }
 
-
         public async void ApplyCustomValidationRules()
         {
             RuleFor(s => s.Name)
