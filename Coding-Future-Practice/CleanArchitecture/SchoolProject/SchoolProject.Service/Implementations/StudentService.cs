@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SchoolProject.Data.Entities;
+using SchoolProject.Data.Helpers;
 using SchoolProject.Infrastructure.Abstracts;
 using SchoolProject.Service.Abstracts;
 using System;
@@ -103,18 +104,36 @@ namespace SchoolProject.Service.Implementations
                 .Include(s => s.Department).AsQueryable();
         }
 
-        public IQueryable<Student> FilterStudentPaginatedQuery (string search)
+        public IQueryable<Student> FilterStudentPaginatedQuery (StudentOrderingEnum stdOrderEnum,
+                                                                string search)
         {
 
             var queryable = GetStudentsQueryable();
 
-            if (search == null)
+            if (search != null)
             {
-                return queryable;
+                queryable = queryable.Where(s => s.Name.Contains(search) ||
+                                             s.Address.Contains(search));
+
+
             }
 
-            queryable = queryable.Where(s => s.Name.Contains(search) ||
-                                             s.Address.Contains(search));
+            switch (stdOrderEnum)
+            {
+                case StudentOrderingEnum.StudID:
+                    queryable = queryable.OrderBy(s => s.StudID); break;
+
+                case StudentOrderingEnum.Name:
+                    queryable = queryable.OrderBy(s => s.Name); break;
+
+                case StudentOrderingEnum.Address:
+                    queryable = queryable.OrderBy(s => s.Address); break;
+            
+                case StudentOrderingEnum.DepartmentName:
+                    queryable = queryable.OrderBy(s => s.Department.Name); break;
+            
+            }
+
 
             return queryable;
         }
