@@ -59,7 +59,8 @@ namespace SchoolProject.Core.Features.Students.Queries.Handlers
 
            // var queryable = _studentService.GetStudentsQueryable();
 
-            var filterQuery = _studentService.FilterStudentPaginatedQuery(request.Search);
+            var filterQuery = _studentService.FilterStudentPaginatedQuery(request.OrderBy,
+                                                                          request.Search);
             
             var paginatedList = await filterQuery.Select(expression)
                                .ToPaginationListAsync(request.PageNumber, request.PageSize);
