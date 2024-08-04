@@ -1,10 +1,13 @@
+using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using SchoolProject.Core;
 using SchoolProject.Infrastructure;
 using SchoolProject.Infrastructure.Abstracts;
 using SchoolProject.Infrastructure.Data;
 using SchoolProject.Infrastructure.Repositories;
 using SchoolProject.Service;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,11 +18,36 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
+#region Dependency Injection
 builder.Services.AddInfrastructureDependencies()
                 .AddServiceDependencies()
                 .AddCoreDependencies();
+#endregion
 
+
+#region Localization
+
+builder.Services.AddControllersWithViews();
+builder.Services.AddLocalization(opt =>
+{
+    opt.ResourcesPath = "Resource";
+});
+builder.Services.Configure<RequestLocalizationOptions>(option =>
+{
+    List<CultureInfo> supportedCultures = new List<CultureInfo>
+    {
+        new CultureInfo("en-US"),
+        new CultureInfo("fr-FR"),
+        new CultureInfo("de-DE"),
+        new CultureInfo("ar-EG")
+    };
+
+    option.DefaultRequestCulture = new RequestCulture("ar-EG");
+    option.SupportedCultures = supportedCultures;
+    option.SupportedUICultures = supportedCultures;
+});
+
+#endregion
 // Add DB ConnectionString
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
@@ -39,6 +67,13 @@ else if (app.Environment.IsProduction())
     app.UseSwaggerUI();
     app.UseSwaggerUI();
 }
+
+#region Localization Middleware 
+var options = app.Services.GetService
+    <IOptions<RequestLocalizationOptions>>();
+
+app.UseRequestLocalization(options.Value);
+#endregion
 
 app.UseMiddleware<ErrorHandlerMiddleware>();
 

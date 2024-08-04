@@ -1,5 +1,7 @@
 ﻿// Ignore Spelling: Unprocessable
 
+using Microsoft.Extensions.Localization;
+using SchoolProject.Core.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +12,11 @@ namespace SchoolProject.Core.Bases
 {
     public class ResponseHandler
     {
-        public ResponseHandler()
+        private readonly IStringLocalizer<SharedResources> _stringLocalizer;
+
+        public ResponseHandler(IStringLocalizer<SharedResources> stringLocalizer)
         {
-            
+            _stringLocalizer = stringLocalizer;
         }
 
         public Response<T> Deleted<T>(string Message = null)
