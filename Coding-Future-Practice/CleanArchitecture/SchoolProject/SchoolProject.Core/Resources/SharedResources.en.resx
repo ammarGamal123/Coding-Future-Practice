@@ -117,10 +117,43 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BadRequest" xml:space="preserve">
+    <value>This request can't be understandable</value>
+  </data>
+  <data name="Created" xml:space="preserve">
+    <value>Created Successfully</value>
+  </data>
+  <data name="Deleted" xml:space="preserve">
+    <value>Deleted Successfully</value>
+  </data>
+  <data name="IsExist" xml:space="preserve">
+    <value>Already Exists</value>
+  </data>
+  <data name="MaxLengthIs100" xml:space="preserve">
+    <value>Max Length is 100 characters</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="NotEmpty" xml:space="preserve">
+    <value>Can't be Empty</value>
+  </data>
   <data name="NotFound" xml:space="preserve">
     <value>This Student Not Found</value>
   </data>
   <data name="Required" xml:space="preserve">
     <value>This Field is Required</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>Added Successfully</value>
+  </data>
+  <data name="UnAuthorized" xml:space="preserve">
+    <value>U R not authorized to access these resources</value>
+  </data>
+  <data name="UnProcessableEntity" xml:space="preserve">
+    <value>There are Validation Errors or Syntax Errors</value>
+  </data>
+  <data name="Updated" xml:space="preserve">
+    <value>Updated Successfully</value>
   </data>
 </root>

@@ -117,10 +117,43 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BadRequest" xml:space="preserve">
+    <value>هذا الطلب لا يمكن فهمه</value>
+  </data>
+  <data name="Created" xml:space="preserve">
+    <value>تم الاضافة بنجاح</value>
+  </data>
+  <data name="Deleted" xml:space="preserve">
+    <value>تم الحذف بنجاح</value>
+  </data>
+  <data name="IsExist" xml:space="preserve">
+    <value>موجود بالفعل</value>
+  </data>
+  <data name="MaxLengthIs100" xml:space="preserve">
+    <value>اطول جملة تتكون من 100 حرف</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>الاسم</value>
+  </data>
+  <data name="NotEmpty" xml:space="preserve">
+    <value>لا يمكن ترك العنصر فارغ</value>
+  </data>
   <data name="NotFound" xml:space="preserve">
     <value>هذا الطالب غير موجود</value>
   </data>
   <data name="Required" xml:space="preserve">
     <value>هذا الحقل مطلوب</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>تمت الاضافة بنجاح</value>
+  </data>
+  <data name="UnAuthorized" xml:space="preserve">
+    <value>لا تملك الصلاحية للوصول لهذه البيانات</value>
+  </data>
+  <data name="UnProcessableEntity" xml:space="preserve">
+    <value>يوجد مشاكل في صيغة البيانات او نوعها عن المطلوب </value>
+  </data>
+  <data name="Updated" xml:space="preserve">
+    <value>تم التعديل بنجاح</value>
   </data>
 </root>
