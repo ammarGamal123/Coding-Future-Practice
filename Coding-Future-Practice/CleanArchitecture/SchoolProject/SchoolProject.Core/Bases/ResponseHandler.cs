@@ -25,7 +25,7 @@ namespace SchoolProject.Core.Bases
             {
                 StatusCode = System.Net.HttpStatusCode.OK,
                 Succeeded = true,
-                Message = Message ?? "Deleted Successfully"
+                Message = Message ?? _stringLocalizer[SharedResourcesKeys.Deleted]
             };
         }
 
@@ -36,7 +36,7 @@ namespace SchoolProject.Core.Bases
                 Data = entity,
                 StatusCode = System.Net.HttpStatusCode.OK,
                 Succeeded = true,
-                Message = "Added Successfully",
+                Message = _stringLocalizer[SharedResourcesKeys.Success],
                 Meta = Meta
             };
         }
@@ -47,7 +47,7 @@ namespace SchoolProject.Core.Bases
             {
                 StatusCode = System.Net.HttpStatusCode.Unauthorized,
                 Succeeded = true,
-                Message = "UnAuthorized"
+                Message = _stringLocalizer[SharedResourcesKeys.UnAuthorized]
             };
         }
 
@@ -57,7 +57,7 @@ namespace SchoolProject.Core.Bases
             {
                 StatusCode = System.Net.HttpStatusCode.BadRequest,
                 Succeeded = false,
-                Message = Message == null ? "Bad Request" : Message
+                Message = Message == null ? _stringLocalizer[SharedResourcesKeys.BadRequest] : Message
             };
         }
 
@@ -67,7 +67,8 @@ namespace SchoolProject.Core.Bases
             {
                 StatusCode = System.Net.HttpStatusCode.UnprocessableEntity,
                 Succeeded = false,
-                Message = Message == null ? "UnProcessable Entity" : Message
+                Message = Message == null ? _stringLocalizer[SharedResourcesKeys.UnProcessableEntity] 
+                                          : Message
             };
         }
 
@@ -77,7 +78,8 @@ namespace SchoolProject.Core.Bases
             {
                 StatusCode = System.Net.HttpStatusCode.NotFound,
                 Succeeded = false,
-                Message = message == null ? "Not Found" : message
+                Message = message == null ? _stringLocalizer[SharedResourcesKeys.NotFound] 
+                                          : message
             };
         }
 
@@ -88,7 +90,7 @@ namespace SchoolProject.Core.Bases
                 Data = entity,
                 StatusCode = System.Net.HttpStatusCode.Created,
                 Succeeded = true,
-                Message = "Created Successfully",
+                Message = _stringLocalizer[SharedResourcesKeys.Created],
                 Meta = Meta
             };
         }

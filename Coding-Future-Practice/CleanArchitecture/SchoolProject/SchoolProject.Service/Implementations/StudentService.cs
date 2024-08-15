@@ -23,13 +23,13 @@ namespace SchoolProject.Service.Implementations
         public async Task<string> CreateStudentAsync(Student student)
         {
             // Check if name exists
-            var isNameExists = _studentRepository.GetTableNoTracking()
-                              .FirstOrDefault(s => s.Name == student.Name);
+            /*var isNameExists = await _studentRepository.GetTableNoTracking()
+                                  .AnyAsync(s => s.Name.ToLower() == student.Name.ToLower());
 
-            if (isNameExists != null)
+            if (isNameExists)
             {
-                return "Name is already exists";
-            }
+                return "Name already exists";
+            }*/
 
             await _studentRepository.AddAsync(student);
 
@@ -76,13 +76,13 @@ namespace SchoolProject.Service.Implementations
         public async Task<bool> IsNameExists(string name)
         {
             return await _studentRepository.GetTableNoTracking()
-                .AnyAsync(s => s.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+                .AnyAsync(s => s.NameEn.ToLower() == name);
         }
 
         public async Task<bool> IsNameExistsExcludeSelf(string name, int id)
         {
             return await _studentRepository.GetTableNoTracking()
-                .AnyAsync(s => s.Name.ToLower() == name.ToLower() && s.StudID != id);
+                .AnyAsync(s => s.NameEn.ToLower() == name.ToLower() && s.StudID != id);
         }
 
         public async Task<bool> IsStudentIdExist(int id)
@@ -112,7 +112,7 @@ namespace SchoolProject.Service.Implementations
 
             if (search != null)
             {
-                queryable = queryable.Where(s => s.Name.Contains(search) ||
+                queryable = queryable.Where(s => s.NameEn.Contains(search) ||
                                              s.Address.Contains(search));
 
 
@@ -124,13 +124,13 @@ namespace SchoolProject.Service.Implementations
                     queryable = queryable.OrderBy(s => s.StudID); break;
 
                 case StudentOrderingEnum.Name:
-                    queryable = queryable.OrderBy(s => s.Name); break;
+                    queryable = queryable.OrderBy(s => s.NameAr); break;
 
                 case StudentOrderingEnum.Address:
                     queryable = queryable.OrderBy(s => s.Address); break;
             
                 case StudentOrderingEnum.DepartmentName:
-                    queryable = queryable.OrderBy(s => s.Department.Name); break;
+                    queryable = queryable.OrderBy(s => s.Department.NameAr); break;
             
             }
 

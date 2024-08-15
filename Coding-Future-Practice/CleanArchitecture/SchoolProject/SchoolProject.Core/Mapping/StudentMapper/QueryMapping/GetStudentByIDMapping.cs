@@ -12,11 +12,14 @@ namespace SchoolProject.Core.Mapping.StudentMapper
     {
         public void GetStudentByIDMapping()
         {
+            CreateMap<Student , GetStudentByIDResponse>()
+                .ForMember(dest => dest.DepartmentName ,
+                    opt => opt.MapFrom(src => src.Department.Localize(src.Department.NameAr ,
+                                                                      src.Department.NameEn)))
 
-            CreateMap<Student, GetStudentByIDResponse>()
-                    .ForMember(dest => dest.DepartmentName,
-                               opt => opt.MapFrom(src => src.Department.Name))
-                    .ReverseMap();
+                .ForMember(dest => dest.Name , 
+                    opt => opt.MapFrom(src => src.Localize(src.NameAr , src.NameEn)))
+                .ReverseMap();
         }
     }
 }
