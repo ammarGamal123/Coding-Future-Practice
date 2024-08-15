@@ -18,7 +18,16 @@ namespace SchoolProject.Infrastructure.Data
         {
             
         }
-        
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer("LocalConnection"); // For fallback
+            }
+            base.OnConfiguring(optionsBuilder);
+        }
+
         public DbSet<Student> Students { get; set; }    
         public DbSet<Department> Departments { get;set; }
         public DbSet<Subject> Subjects { get; set; }

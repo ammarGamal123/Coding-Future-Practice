@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.Extensions.Localization;
 using SchoolProject.Core.Bases;
 using SchoolProject.Core.Features.Students.Commands.Models;
+using SchoolProject.Core.Resources;
 using SchoolProject.Data.Entities;
 using SchoolProject.Service.Abstracts;
 using System;
@@ -22,14 +24,20 @@ namespace SchoolProject.Core.Features.Students.Commands.Handlers
         #region Fields
         private readonly IStudentService _studentService;
         private readonly IMapper _mapper;
+        private readonly IStringLocalizer<SharedResources> _stringLocalizer;
         #endregion
 
         #region Constructors
 
-        public StudentCommandHandler(IStudentService studentService, IMapper mapper = null)
+        public StudentCommandHandler(
+                                     IStudentService studentService,
+                                     IMapper mapper,
+                                     IStringLocalizer<SharedResources> stringLocalizer)
+                                     : base(stringLocalizer)
         {
             _studentService = studentService;
             _mapper = mapper;
+            _stringLocalizer = stringLocalizer;
         }
         #endregion
 
@@ -44,14 +52,14 @@ namespace SchoolProject.Core.Features.Students.Commands.Handlers
             var result = await _studentService.CreateStudentAsync(student);
 
             // Check the response coming from _studentService
-            if (result == "Name is already exists")
-                return UnprocessableEntity<string>("Name is already exists");
+            if (result == "")
+                return UnprocessableEntity<string>("");
 
             // return response
             else if (result == "Added Successfully")
-                return Created<string>("Added Successfully");
+                return Created<string>("");
             else
-                return BadRequest<string>("something wrong happened");
+                return BadRequest<string>("");
         }
 
        
@@ -61,14 +69,14 @@ namespace SchoolProject.Core.Features.Students.Commands.Handlers
             var student = await _studentService.GetStudentByIDAsync(request.StudID);
             if (student == null)
             {
-                return NotFound<string>($"No Student Found with this ID {request.StudID}");
+                return NotFound<string>("");
             }
 
             // Check if the new name already exists for another student
             bool isNameExists = await _studentService.IsNameExistsExcludeSelf(request.Name, request.StudID);
             if (isNameExists)
             {
-                return BadRequest<string>("This name already exists for another student.");
+                return BadRequest<string>("");
             }
 
             // Map the request data to the student entity
@@ -79,10 +87,10 @@ namespace SchoolProject.Core.Features.Students.Commands.Handlers
 
             if (result != "Success")
             {
-                return BadRequest<string>("Failed to update the student.");
+                return BadRequest<string>("");
             }
 
-            return Created<string>($"Updated Successfully. ID {mappedStudent.StudID}");
+            return Created<string>("");
         }
 
         public async Task<Response<string>> Handle(DeleteStudentCommand request, CancellationToken cancellationToken)
@@ -90,14 +98,14 @@ namespace SchoolProject.Core.Features.Students.Commands.Handlers
             var student = await _studentService.GetStudentByIDAsync(request.StudID);
 
             if (student == null)
-                return NotFound<string>($"No Student Found With this ID {request.StudID}");
+                return NotFound<string>("");
 
             var result = await _studentService.DeleteStudentAsync(student);
 
             if (result != $"Success")
                 return BadRequest<string>();
 
-            return Deleted<string>($"Student ID {request.StudID} has been Deleted");
+            return Deleted<string>("");
         }
 
         #endregion

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SchoolProject.Data.Commons;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SchoolProject.Data.Entities
 {
-    public partial class Department
+    public partial class Department : GeneralLocalizableEntity
     {
         public Department()
         {
@@ -18,8 +19,11 @@ namespace SchoolProject.Data.Entities
         [Key]
         public int DeptID { get; set; }
 
-        [StringLength(500)]
-        public string Name { get; set; }
+        [StringLength(300)]
+        public string NameEn { get; set; }
+
+        [StringLength(300)]
+        public string NameAr { get; set; }
 
         public virtual ICollection<Student> Students { get; set; }
 

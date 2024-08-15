@@ -1,7 +1,9 @@
 ﻿// Ignore Spelling: Validator Vadlidatoins
 
 using FluentValidation;
+using Microsoft.Extensions.Localization;
 using SchoolProject.Core.Features.Students.Commands.Models;
+using SchoolProject.Core.Resources;
 using SchoolProject.Service.Abstracts;
 using System;
 using System.Collections.Generic;
@@ -15,16 +17,16 @@ namespace SchoolProject.Core.Features.Students.Commands.Vadlidatoins
     {
         #region Fields
         private readonly IStudentService _studentService;
+        private readonly IStringLocalizer<SharedResources> _stringLocalizer;
 
-        public UpdateStudentValidator(IStudentService studentService)
-        {
-            _studentService = studentService;
-        }
         #endregion
 
         #region Constructors
-        public UpdateStudentValidator()
+        public UpdateStudentValidator(IStudentService studentService , 
+            IStringLocalizer<SharedResources> stringLocalizer)
         {
+            _studentService = studentService;
+            _stringLocalizer = stringLocalizer;
             ApplyValidationRules();
             ApplyCustomValidationRules();
         }
@@ -34,15 +36,16 @@ namespace SchoolProject.Core.Features.Students.Commands.Vadlidatoins
         public void ApplyValidationRules()
         {
             RuleFor(s => s.Name)
-                .NotEmpty().WithMessage("{PropertyName} Shouldn't be empty")
-                .NotNull().WithMessage("{PropertyName} Shouldn't be null")
-                .MaximumLength(100).WithMessage("{PropertyName} Max Length is 50");
+                .NotEmpty().WithMessage(_stringLocalizer[SharedResourcesKeys.NotEmpty])
+                .NotNull().WithMessage(_stringLocalizer[SharedResourcesKeys.Required])
+                .MaximumLength(50).WithMessage(_stringLocalizer[SharedResourcesKeys.MaxLengthIs100]);
 
 
-             RuleFor(s => s.Address)
-                .NotEmpty().WithMessage("{PropertyName} Shouldn't be empty")
-                .NotNull().WithMessage("{PropertyName} Shouldn't be null")
-                .MaximumLength(100).WithMessage("{PropertyName} Max Length is 50");
+            RuleFor(s => s.Address)
+                .NotEmpty().WithMessage(_stringLocalizer[SharedResourcesKeys.NotEmpty])
+                .NotNull().WithMessage(_stringLocalizer[SharedResourcesKeys.Required])
+                .MaximumLength(50).WithMessage(_stringLocalizer[SharedResourcesKeys.MaxLengthIs100]);
+
         }
 
 

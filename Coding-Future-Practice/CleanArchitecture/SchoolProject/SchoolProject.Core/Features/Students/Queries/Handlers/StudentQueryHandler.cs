@@ -44,7 +44,7 @@ namespace SchoolProject.Core.Features.Students.Queries.Handlers
 
         public async Task<Response<GetStudentByIDResponse>> Handle(GetStudentByIDQuery request, CancellationToken cancellationToken)
         {
-            var student = await _studentService.GetStudentByIDAsync(request.Id);
+            var student = await _studentService.GetStudentWithIncludingByIDAsync(request.Id);
             if (student == null)
                 return NotFound<GetStudentByIDResponse>($"{_stringLocalizer[SharedResourcesKeys.NotFound]} {request.Id}");
 
@@ -58,10 +58,10 @@ namespace SchoolProject.Core.Features.Students.Queries.Handlers
             // Expression looks like mapping from student to GetStudentPaginatedListResponse
             Expression<Func<Student, GetStudentPaginatedListResponse>> expression = stud => new GetStudentPaginatedListResponse(
                 stud.StudID,
-                stud.Name,
+                stud.NameAr,
                 stud.Address,
                 // in IQueryable Needs Department to be included
-                stud.Department.Name
+                stud.Department.NameAr
             );
 
             var filterQuery = _studentService.FilterStudentPaginatedQuery(request.OrderBy, request.Search);

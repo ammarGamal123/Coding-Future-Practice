@@ -30,7 +30,7 @@ builder.Services.AddInfrastructureDependencies()
 builder.Services.AddControllersWithViews();
 builder.Services.AddLocalization(opt =>
 {
-    opt.ResourcesPath = "Resource";
+    opt.ResourcesPath = "";
 });
 builder.Services.Configure<RequestLocalizationOptions>(option =>
 {
@@ -48,6 +48,7 @@ builder.Services.Configure<RequestLocalizationOptions>(option =>
 });
 
 #endregion
+
 // Add DB ConnectionString
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {

@@ -1,61 +1,52 @@
-﻿// Ignore Spelling: Validator
-
-using FluentValidation;
+﻿using FluentValidation;
+using Microsoft.Extensions.Localization;
 using SchoolProject.Core.Features.Students.Commands.Models;
-using SchoolProject.Data.Entities;
+using SchoolProject.Core.Resources;
 using SchoolProject.Service.Abstracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SchoolProject.Core.Features.Students.Commands.Vadlidatoins
+namespace SchoolProject.Core.Features.Students.Commands.Validations
 {
-    public class CreateStudentValidator : AbstractValidator<CreateStudentCommand> 
+    public class CreateStudentValidator : AbstractValidator<CreateStudentCommand>
     {
         #region Fields
         private readonly IStudentService _studentService;
-
-        public CreateStudentValidator(IStudentService studentService)
-        {
-            _studentService = studentService;
-        }
+        private readonly IStringLocalizer<SharedResources> _stringLocalizer;
         #endregion
 
         #region Constructors
-        public CreateStudentValidator()
+        public CreateStudentValidator(IStudentService studentService, IStringLocalizer<SharedResources> stringLocalizer)
         {
-            ApplyValidationRules();
-            ApplyCustomValidationRules();
+            _studentService = studentService;
+            _stringLocalizer = stringLocalizer;
+
+            AddBasicValidationRules();
+            AddCustomValidationRules();
         }
         #endregion
 
         #region Actions
-        public void ApplyValidationRules()
+        private void AddBasicValidationRules()
         {
             RuleFor(s => s.Name)
-                .NotEmpty().WithMessage("{PropertyName} Shouldn't be empty")
-                .NotNull().WithMessage("{PropertyName} Shouldn't be null")
-                .MaximumLength(50).WithMessage("{PropertyName} Max Length is 50");
+                .NotEmpty().WithMessage(_stringLocalizer[SharedResourcesKeys.NotEmpty])
+                .NotNull().WithMessage(_stringLocalizer[SharedResourcesKeys.Required])
+                .MaximumLength(50).WithMessage(_stringLocalizer[SharedResourcesKeys.MaxLengthIs100]);
 
-             RuleFor(s => s.Address)
-                .NotEmpty().WithMessage("{PropertyName} Shouldn't be empty")
-                .NotNull().WithMessage("{PropertyName} Shouldn't be null")
-                .MaximumLength(50).WithMessage("{PropertyName} Max Length is 50");
+            RuleFor(s => s.Address)
+                .NotEmpty().WithMessage(_stringLocalizer[SharedResourcesKeys.NotEmpty])
+                .NotNull().WithMessage(_stringLocalizer[SharedResourcesKeys.Required])
+                .MaximumLength(50).WithMessage(_stringLocalizer[SharedResourcesKeys.MaxLengthIs100]);
+
         }
 
-        public async void ApplyCustomValidationRules()
+        private void AddCustomValidationRules()
         {
             RuleFor(s => s.Name)
-                .MustAsync(async (Key, CancellationToken) =>
-                // Why "!" because if it name was found then it's true
-                           !await _studentService.IsNameExists(Key))
-                .WithMessage("This Name is already Exists");
-        } 
+                .MustAsync(async (name, cancellationToken) =>
+                    !await _studentService.IsNameExists(name.ToLower()))
+                // Ensuring case-insensitive comparison
+                .WithMessage(_stringLocalizer[SharedResourcesKeys.IsExist]);
+        }
         #endregion
-
-
-
     }
 }
