@@ -16,7 +16,10 @@ namespace SchoolProject.Core.Mapping.StudentMapper
             
             CreateMap<Student, GetStudentsListResponse>()
                 .ForMember(dest => dest.DepartmentName,
-                           opt => opt.MapFrom(src => src.Department.NameAr))         
+                           opt => opt.MapFrom(src => src.Department.Localize(src.Department.NameAr 
+                                                                           , src.Department.NameEn)))
+                .ForMember(dest => dest.Name , 
+                           opt => opt.MapFrom(src => src.Localize(src.NameAr , src.NameEn)))
                 .ReverseMap();
 
         }
