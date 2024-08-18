@@ -39,7 +39,10 @@ namespace SchoolProject.Core.Features.Students.Queries.Handlers
             var students = await _studentService.GetAllStudentsAsync();
             var studentsMapper = _mapper.Map<List<GetStudentsListResponse>>(students);
 
-            return Success(studentsMapper);
+            var result = Success(studentsMapper);
+            result.Meta = new { Count = studentsMapper.Count() };
+
+            return result;
         }
 
         public async Task<Response<GetStudentByIDResponse>> Handle(GetStudentByIDQuery request, CancellationToken cancellationToken)
@@ -56,20 +59,24 @@ namespace SchoolProject.Core.Features.Students.Queries.Handlers
         public async Task<PaginationResult<GetStudentPaginatedListResponse>> Handle(GetStudentPaginatedListQuery request, CancellationToken cancellationToken)
         {
             // Expression looks like mapping from student to GetStudentPaginatedListResponse
-            Expression<Func<Student, GetStudentPaginatedListResponse>> expression = stud => new GetStudentPaginatedListResponse(
+            Expression<Func<Student, GetStudentPaginatedListResponse>> expression
+                = stud => new GetStudentPaginatedListResponse(
                 stud.StudID,
-                stud.NameAr,
+                stud.Localize(stud.NameAr , stud.NameEn),
                 stud.Address,
                 // in IQueryable Needs Department to be included
-                stud.Department.NameAr
+                stud.Department.Localize(stud.Department.NameAr , stud.Department.NameEn)
             );
 
-            var filterQuery = _studentService.FilterStudentPaginatedQuery(request.OrderBy, request.Search);
+            var filterQuery = _studentService.FilterStudentPaginatedQuery(
+                request.OrderBy, request.Search);
 
             var paginatedList = await filterQuery.Select(expression)
                                .ToPaginationListAsync(request.PageNumber, request.PageSize);
 
-            return paginatedList;
+            var result = paginatedList;
+            result.Meta = new { Count = paginatedList.Data.Count() };
+            return result;
         }
     }
 }
