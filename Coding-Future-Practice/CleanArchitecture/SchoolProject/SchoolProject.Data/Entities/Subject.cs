@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,9 +15,11 @@ namespace SchoolProject.Data.Entities
         {
             StudentSubjects = new HashSet<StudentSubject>();
             DepartmentSubjects = new HashSet<DepartmentSubject>();
+            InstructorSubjects = new HashSet<InstructorSubject>();
         }
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int SubID { get; set; }
 
         [StringLength(500)]
@@ -28,9 +31,14 @@ namespace SchoolProject.Data.Entities
 
         public DateTime Period { get; set; }
 
+        [InverseProperty(nameof(StudentSubject.Subject))]
         public virtual ICollection<StudentSubject> StudentSubjects { get; set; }
 
-        public virtual ICollection<DepartmentSubject> DepartmentSubjects { get; set; }  
+        [InverseProperty(nameof(DepartmentSubject.Subject))]
+        public virtual ICollection<DepartmentSubject> DepartmentSubjects { get; set; }
+
+        [InverseProperty(nameof(InstructorSubject.Subject))]
+        public virtual ICollection<InstructorSubject> InstructorSubjects { get; set; }
 
         
     }

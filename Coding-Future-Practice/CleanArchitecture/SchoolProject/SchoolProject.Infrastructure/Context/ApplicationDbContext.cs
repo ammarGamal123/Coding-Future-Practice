@@ -33,6 +33,38 @@ namespace SchoolProject.Infrastructure.Data
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<StudentSubject> StudentSubjects { get; set; }
         public DbSet<DepartmentSubject> DepartmentSubjects { get; set; }
+        public DbSet<Instructor> Instructors { get; set; }
+        public DbSet<InstructorSubject> InstructorSubjects { get; set; }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<InstructorSubject>()
+                .HasKey(i => new { i.SubjectID, i.InstructorID });
+
+            modelBuilder.Entity<StudentSubject>()
+                .HasKey(s => new { s.SubID, s.StudID });
+
+            modelBuilder.Entity<DepartmentSubject>()
+                .HasKey(d => new { d.SubID, d.DeptID });
+
+            modelBuilder.Entity<Instructor>()
+                .HasOne(i => i.Supervisor)
+                .WithMany(i => i.Instructors)
+                .HasForeignKey(i => i.SupervisorID)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Department>()
+                .HasOne(d => d.Instructor)
+                .WithOne(d => d.DepartmentManager)
+                .HasForeignKey<Department>(d => d.InstructorManager)
+                .OnDelete(DeleteBehavior.Restrict);
+
+
+
+            base.OnModelCreating(modelBuilder);
+        }
+
 
     }
 }
