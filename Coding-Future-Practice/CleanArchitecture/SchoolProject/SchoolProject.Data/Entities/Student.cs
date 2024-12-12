@@ -12,6 +12,11 @@ namespace SchoolProject.Data.Entities
 {
     public class Student : GeneralLocalizableEntity
     {
+        public Student()
+        {
+            StudentSubjects = new HashSet<StudentSubject>();
+        }
+
         [Key]
         public int StudID { get; set; }
 
@@ -31,6 +36,12 @@ namespace SchoolProject.Data.Entities
 
         [ForeignKey("DepartmentID")]
         public int? DepartmentID { get; set; }
-        public virtual Department Department { get; set; } 
+
+        [InverseProperty(nameof(Department.Students))]
+        public virtual Department Department { get; set; }
+
+
+        [InverseProperty(nameof(StudentSubject.Student))]
+        public virtual ICollection<StudentSubject> StudentSubjects { get; set; }
     }
 }

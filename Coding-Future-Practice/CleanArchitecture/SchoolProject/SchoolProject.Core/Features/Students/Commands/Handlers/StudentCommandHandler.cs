@@ -80,7 +80,7 @@ namespace SchoolProject.Core.Features.Students.Commands.Handlers
             }
 
             // Map the request data to the student entity
-            var mappedStudent = _mapper.Map<Student>(request);
+            var mappedStudent = _mapper.Map(request , student);
 
             // Call the service to update the student
             var result = await _studentService.UpdateStudentAsync(mappedStudent);
